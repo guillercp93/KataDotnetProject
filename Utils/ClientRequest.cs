@@ -55,9 +55,11 @@ public static class ClientRequest
         return JsonSerializer.Deserialize<T>(jsonString);
     }
 
-    // Example: RequestTokenAsync("https://service.com/token", new { username = "user", password = "pass" });
     public static async Task RequestTokenAsync(string tokenUrl, object credentials)
     {
+        if (string.IsNullOrWhiteSpace(tokenUrl))
+            throw new ArgumentNullException(nameof(tokenUrl), "Token URL cannot be null or empty.");
+
         using var httpClient = new HttpClient();
         var content = new StringContent(JsonSerializer.Serialize(credentials), System.Text.Encoding.UTF8, "application/json");
         var response = await httpClient.PostAsync(tokenUrl, content);

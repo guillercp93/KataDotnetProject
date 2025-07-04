@@ -7,19 +7,32 @@ using BancoKata.Services;
 
 namespace BancoKata.Controller
 {
+    /// <summary>
+    /// Controller for handling user client operations such as consulting account, credit history, and data credit.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class UserClient : ControllerBase
     {
-        private readonly TokenService _services;
+        private readonly IService _services;
         private readonly ILogger<UserClient> _logger;
 
-        public UserClient(TokenService services, ILogger<UserClient> logger)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserClient"/> class.
+        /// </summary>
+        /// <param name="services">Service for token and data operations.</param>
+        /// <param name="logger">Logger instance for logging information and errors.</param>
+        public UserClient(IService services, ILogger<UserClient> logger)
         {
             _services = services;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Processes a credit consultation request, including account, credit history, and data credit information.
+        /// </summary>
+        /// <param name="request">The consultation request containing user data.</param>
+        /// <returns>Returns a response with credit history, account, and data credit information, or an error if the process fails.</returns>
         [HttpPost("consultar")]
         public async Task<IActionResult> Consultar([FromBody] ConsultaRequest request)
         {
@@ -32,15 +45,15 @@ namespace BancoKata.Controller
 
             try
             {
-                // Consultar el token
+                // Query access token from configuration
                 await _services.RequestTokenFromConfigAsync();
-                // Consulta de historial crediticio
+                // Quyery credit history
                 var response = await _services.ConsultarHistorialCrediticioAsync(request);
-                // Consulta de la cuentas
+                // Query account information
                 var cuentaResponse = await _services.ConsultarCuentaAsync(request);
-                // Consulta data crédito
+                // Query of data credit
                 var dataCreditoResponse = await _services.ConsultarDataCreditoAsync(request);
-                // formar la respuesta
+                // Rebuild the response
                 response.Cuentas = cuentaResponse;
                 response.DataCredito = dataCreditoResponse.DataCredito;
                 response.Huellas = dataCreditoResponse.Huellas;

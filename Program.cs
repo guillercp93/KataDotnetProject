@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Register TokenService for dependency injection
-builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<IService, Service>();
 
 // ...other service registrations...
 

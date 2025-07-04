@@ -5,11 +5,11 @@ using BancoKata.Utils;
 
 namespace BancoKata.Services;
 
-public class TokenService
+public class Service : IService
 {
     private readonly IConfiguration _configuration;
 
-    public TokenService(IConfiguration configuration)
+    public Service(IConfiguration configuration)
     {
         _configuration = configuration;
     }
