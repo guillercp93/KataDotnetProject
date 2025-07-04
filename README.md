@@ -26,11 +26,6 @@ A .NET implementation of a simple banking system, created as a coding kata to pr
    dotnet restore
    ```
 
-3. Run the tests:
-   ```bash
-   dotnet test
-   ```
-
 4. Run the application:
    ```bash
    dotnet run
@@ -43,8 +38,6 @@ A .NET implementation of a simple banking system, created as a coding kata to pr
   - `Services/` - Business logic
   - `Interfaces/` - Service contracts
   - `Program.cs` - Application entry point
-- `BancoKata.Tests/` - Unit tests
-  - `UnitTest1.cs` - Example test file
 
 ## Running Tests
 
@@ -68,5 +61,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by the Bank Account Kata
 - Built with .NET 8.0
