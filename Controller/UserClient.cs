@@ -34,6 +34,8 @@ namespace BancoKata.Controller
         /// <param name="request">The consultation request containing user data.</param>
         /// <returns>Returns a response with credit history, account, and data credit information, or an error if the process fails.</returns>
         [HttpPost("consultar")]
+        [ProducesResponseType(200, Type = typeof(ResponseDTO))]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Consultar([FromBody] ConsultaRequest request)
         {
             // Lógica para procesar la consulta
