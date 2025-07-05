@@ -1,0 +1,40 @@
+@Host = http://localhost:5231
+@ContentType = application/json
+
+### 1. Get Account Status with Valid Request
+POST {{Host}}/api/accountstatus
+Content-Type: {{ContentType}}
+
+{
+  "documentId": "11111",
+  "documentType": "1",
+  "countryId": "1"
+}
+
+### 2. Get Account Status with Missing Fields
+POST {{Host}}/api/accountstatus
+Content-Type: {{ContentType}}
+
+{
+  "documentId": "",
+  "documentType": "",
+  "countryId": ""
+}
+
+### 3. Get Account Status with Invalid JSON
+POST {{Host}}/api/accountstatus
+Content-Type: {{ContentType}}
+
+{
+  "invalidField": "test"
+}
+
+### 4. Get Account Status with Different Document Types
+POST {{Host}}/api/accountstatus
+Content-Type: {{ContentType}}
+
+{
+  "documentId": "12345",
+  "documentType": "4",
+  "countryId": "2"
+}
