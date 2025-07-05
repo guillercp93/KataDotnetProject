@@ -14,8 +14,8 @@ A .NET 8.0 based banking application that provides comprehensive banking operati
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd DotnetPractice
+   git clone https://github.com/guillercp93/KataDotnetProject.git
+   cd KataDotnetProject
    ```
 
 2. Restore dependencies:
